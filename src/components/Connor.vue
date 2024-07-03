@@ -11,7 +11,7 @@
     <hr>
     <div id="card-container">
       <Card v-for="(item, index) in displayedTemplates" :key="index" :image="item.image" :name="item.name"
-        :active="item.active"></Card>
+        :timelapse="item.timelapse" :active="item.active"></Card>
       <b-button variant="primary" v-if="showSeeMoreTemplatesButton" @click="showMoreTemplates">See more</b-button>
       <b-button variant="primary" v-if="showSeeLessTemplatesButton" @click="showLessTemplates">See less</b-button>
     </div>
@@ -19,7 +19,7 @@
     <b-container>
       <b-row>
         <b-col>
-          <h1>Unnoficial templates</h1>
+          <h1>Unnoficial</h1>
           <hr>
           <div id="ally-container">
             <Unaffiliated v-for="(item, index) in displayedUnaffiliated" :key="index" :title="item.name"
@@ -44,13 +44,14 @@
         </b-col>
       </b-row>
     </b-container>
-    <h1>Templates</h1>
+    <hr>
+    <h1>Abandoned Templates</h1>
     <hr>
     <div id="card-container">
-      <Card v-for="(item, index) in displayedTemplates" :key="index" :image="item.image" :name="item.name"
+      <Card v-for="(item, index) in displayedDeprecated" :key="index" :image="item.image" :name="item.name"
         :active="item.active"></Card>
-      <b-button variant="primary" v-if="showSeeMoreTemplatesButton" @click="showMoreTemplates">See more</b-button>
-      <b-button variant="primary" v-if="showSeeLessTemplatesButton" @click="showLessTemplates">See less</b-button>
+      <b-button variant="primary" v-if="showSeeMoreDeprecatedButton" @click="showMoreDeprecated">See more</b-button>
+      <b-button variant="primary" v-if="showSeeLessDeprecatedButton" @click="showLessDeprecated">See less</b-button>
     </div>
   </div>
 </template>
@@ -75,14 +76,14 @@ export default {
       inactive: true,
       showMoreTemplatesButton: true,
       templates: [
-        { image: '/connor/templates/chainsaw.png', name: "Chainsaw Neuro", active: false },
-        { image: '/connor/templates/evilIDF.png', name: "Evil IDF", active: false },
-        { image: '/connor/templates/sleepover.png', name: "Moon Sleepover", active: false },
-        { image: '/connor/templates/channy.png', name: "Channy & Fumo", active: false },
-        { image: '/connor/templates/annyhood.png', name: "Anny Hoodie", active: false },
-        { image: '/connor/templates/swarm.png', name: "Giga Vedal & Anny", active: false },
-        { image: '/connor/templates/swarm.png', name: "Swarm Calls", active: false },
-        { image: '/connor/templates/anny.png', name: "Anny", active: false },
+        { image: '/connor/templates/chainsaw.png', timelapse: '/connor/timelapses/Chainsaw_Neuro.mp4', name: "Chainsaw Neuro" },
+        { image: '/connor/templates/evilIDF.png', timelapse: '/connor/timelapses/Evil_IDF.mp4', name: "Evil IDF" },
+        { image: '/connor/templates/sleepover.png', timelapse: '/connor/timelapses/Miyu_Sleep.mp4', name: "Moon Sleepover" },
+        { image: '/connor/templates/channy.png', timelapse: '/connor/timelapses/Channy_Fumo.mp4', name: "Channy & Fumo" },
+        { image: '/connor/templates/annyhood.png', timelapse: '', name: "Anny Hoodie" },
+        { image: '/connor/templates/gigavedal.png', timelapse: '/connor/timelapses/Gigavedal_Anny.mp4', name: "Giga Vedal & Anny" },
+        { image: '/connor/templates/swarm.png', timelapse: '', name: "Swarm Calls" },
+        { image: '/connor/templates/anny.png', timelapse: '', name: "Anny" },
       ],
       displayTemplateCount: 4,
       allies: [
@@ -104,7 +105,7 @@ export default {
         { image: '/connor/unaffiliated/neuroPls.png', name: "neuroPls", url: "" },
         { image: '/connor/unaffiliated/femturtle.png', name: "Femturtle", url: "" },
         { image: '/connor/unaffiliated/host.png', name: "Host Error", url: "" },
-        { image: "emergencyPipeTemplate", name: "Emergency Pipe", url: "" },
+        { image: "/connor/unaffiliated/pipe.png", name: "Emergency Pipe", url: "" },
         { image: '/connor/unaffiliated/studysama.png', name: "Study-sama", url: "" },
         { image: '/connor/unaffiliated/isaac.png', name: "Neuro TBOI", url: "" },
         { image: '/connor/unaffiliated/shiba.png', name: "Shiba", url: "" },
@@ -114,7 +115,10 @@ export default {
       ],
       displayUnaffiliatedCount: 5,
       deprecated: [
-        { image: '', name: '', url: '' },
+        { image: '/connor/templates/deprecated/channyEvil.png', name: 'Channy + Evil Fumo', url: '' },
+        { image: '/connor/templates/deprecated/neuroIDF.png', name: 'Neuro IDF', url: '' },
+        { image: '/connor/templates/deprecated/family.png', name: 'Family Table', url: '' },
+        { image: '/connor/templates/deprecated/anny.png', name: 'anny', url: '' }
       ],
       displayDeprecatedCount: 5
     }
@@ -179,7 +183,7 @@ export default {
     showMoreDeprecated() {
       return this.displayDeprecatedCount += 5;
     },
-    showLEssDeprecated() {
+    showLessDeprecated() {
       return this.displayDeprecatedCount = 5;
     }
   }

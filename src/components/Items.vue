@@ -7,8 +7,8 @@
 
       <b-button v-if="active" href="#" variant="primary">Open</b-button>
       <div v-else  id="archive-buttons">
-        <b-button href="#" variant="primary">Full size</b-button>
-        <b-button href="#" variant="primary">Timelapse</b-button>
+        <b-button :href="image" variant="primary">Full size</b-button>
+        <b-button v-if="timelapse !== ''" :href="timelapse" variant="primary">Timelapse</b-button>
       </div>
     </b-card>
   </div>
@@ -29,6 +29,14 @@ export default {
     active : {
       type: Boolean,
       required: true
+    },
+    template: {
+      type: String,
+      required: false
+    },
+    timelapse: {
+      type: String,
+      required: false
     }
   }
 }
