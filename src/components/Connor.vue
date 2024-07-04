@@ -12,8 +12,10 @@
     <div id="card-container">
       <Card v-for="(item, index) in displayedTemplates" :key="index" :image="item.image" :name="item.name"
         :timelapse="item.timelapse" :active="item.active"></Card>
-      <b-button variant="primary" v-if="showSeeMoreTemplatesButton" @click="showMoreTemplates">See more</b-button>
-      <b-button variant="primary" v-if="showSeeLessTemplatesButton" @click="showLessTemplates">See less</b-button>
+      <b-button class="card-section-btn" variant="primary" v-if="showSeeMoreTemplatesButton"
+        @click="showMoreTemplates">See more</b-button>
+      <b-button class="card-section-btn" variant="primary" v-if="showSeeLessTemplatesButton"
+        @click="showLessTemplates">See less</b-button>
     </div>
     <hr>
     <b-container>
@@ -23,12 +25,12 @@
           <hr>
           <div id="ally-container">
             <Unaffiliated v-for="(item, index) in displayedUnaffiliated" :key="index" :title="item.name"
-              :details="item.url" :image="item.image"></Unaffiliated>
+              :image="item.image"></Unaffiliated>
           </div>
-          <b-button style="margin-top: 1em;" variant="primary" v-if="showSeeMoreUnaffiliatedButton"
-            @click="showMoreUnaffiliated">See more</b-button>
-          <b-button style="margin-top: 1em;" variant="primary" v-if="showSeeLessUnaffiliatedButton"
-            @click="showLessUnaffiliated">See less</b-button>
+          <b-button class="card-section-btn" style="margin-top: 1em;" variant="primary"
+            v-if="showSeeMoreUnaffiliatedButton" @click="showMoreUnaffiliated">See more</b-button>
+          <b-button class="card-section-btn" style="margin-top: 1em;" variant="primary"
+            v-if="showSeeLessUnaffiliatedButton" @click="showLessUnaffiliated">See less</b-button>
         </b-col>
         <b-col>
           <h1>Allies</h1>
@@ -37,9 +39,9 @@
             <Ally v-for="(item, index) in displayedAllies" :key="index" :title="item.name" :details="item.url"
               :image="item.image" :templates="item.preview"></Ally>
           </div>
-          <b-button style="margin-top: 1em;" variant="primary" v-if="showSeeMoreAlliesButton"
+          <b-button class="card-section-btn" style="margin-top: 1em;" variant="primary" v-if="showSeeMoreAlliesButton"
             @click="showMoreAllies">See more</b-button>
-          <b-button style="margin-top: 1em;" variant="primary" v-if="showSeeLessAlliesButton"
+          <b-button class="card-section-btn" style="margin-top: 1em;" variant="primary" v-if="showSeeLessAlliesButton"
             @click="showLessAllies">See less</b-button>
         </b-col>
       </b-row>
@@ -49,9 +51,11 @@
     <hr>
     <div id="card-container">
       <Card v-for="(item, index) in displayedDeprecated" :key="index" :image="item.image" :name="item.name"
-        :active="item.active"></Card>
-      <b-button variant="primary" v-if="showSeeMoreDeprecatedButton" @click="showMoreDeprecated">See more</b-button>
-      <b-button variant="primary" v-if="showSeeLessDeprecatedButton" @click="showLessDeprecated">See less</b-button>
+        :active="item.active" :timelapse="item.timelapse"></Card>
+      <b-button class="card-section-btn" variant="primary" v-if="showSeeMoreDeprecatedButton"
+        @click="showMoreDeprecated">See more</b-button>
+      <b-button class="card-section-btn" variant="primary" v-if="showSeeLessDeprecatedButton"
+        @click="showLessDeprecated">See less</b-button>
     </div>
   </div>
 </template>
@@ -76,14 +80,14 @@ export default {
       inactive: true,
       showMoreTemplatesButton: true,
       templates: [
-        { image: '/connor/templates/chainsaw.png', timelapse: '/connor/timelapses/Chainsaw_Neuro.mp4', name: "Chainsaw Neuro" },
-        { image: '/connor/templates/evilIDF.png', timelapse: '/connor/timelapses/Evil_IDF.mp4', name: "Evil IDF" },
-        { image: '/connor/templates/sleepover.png', timelapse: '/connor/timelapses/Miyu_Sleep.mp4', name: "Moon Sleepover" },
-        { image: '/connor/templates/channy.png', timelapse: '/connor/timelapses/Channy_Fumo.mp4', name: "Channy & Fumo" },
-        { image: '/connor/templates/annyhood.png', timelapse: '', name: "Anny Hoodie" },
-        { image: '/connor/templates/gigavedal.png', timelapse: '/connor/timelapses/Gigavedal_Anny.mp4', name: "Giga Vedal & Anny" },
-        { image: '/connor/templates/swarm.png', timelapse: '', name: "Swarm Calls" },
-        { image: '/connor/templates/anny.png', timelapse: '', name: "Anny" },
+        { image: '/connor/templates/chainsaw.png', timelapse: '/connor/timelapses/Chainsaw_Neuro.mp4', name: "Chainsaw Neuro", active: false },
+        { image: '/connor/templates/evilIDF.png', timelapse: '/connor/timelapses/Evil_IDF.mp4', name: "Evil IDF", active: false },
+        { image: '/connor/templates/sleepover.png', timelapse: '/connor/timelapses/Miyu_Sleep.mp4', name: "Moon Sleepover", active: false },
+        { image: '/connor/templates/channy.png', timelapse: '/connor/timelapses/Channy_Fumo.mp4', name: "Channy & Fumo", active: false },
+        { image: '/connor/templates/annyhood.png', timelapse: '', name: "Anny Hoodie", active: false },
+        { image: '/connor/templates/gigavedal.png', timelapse: '/connor/timelapses/Gigavedal_Anny.mp4', name: "Giga Vedal & Anny", active: false },
+        { image: '/connor/templates/swarm.png', timelapse: '', name: "Swarm Calls", active: false },
+        { image: '/connor/templates/anny.png', timelapse: '', name: "Anny", active: false },
       ],
       displayTemplateCount: 4,
       allies: [
@@ -115,10 +119,11 @@ export default {
       ],
       displayUnaffiliatedCount: 5,
       deprecated: [
-        { image: '/connor/templates/deprecated/channyEvil.png', name: 'Channy + Evil Fumo', url: '' },
-        { image: '/connor/templates/deprecated/neuroIDF.png', name: 'Neuro IDF', url: '' },
-        { image: '/connor/templates/deprecated/family.png', name: 'Family Table', url: '' },
-        { image: '/connor/templates/deprecated/anny.png', name: 'anny', url: '' }
+        { image: '/connor/templates/deprecated/channyEvil.png', name: 'Channy + Evil Fumo', url: '', timelapse: '/connor/timelapses/deprecated/Channy_EvilFumo.mp4', active: false },
+        { image: '/connor/templates/deprecated/neuroIDF.png', name: 'Neuro IDF', url: '', timelapse: '/connor/timelapses/deprecated/Neuro_IDF.mp4', active: false },
+        { image: '/connor/templates/deprecated/family.png', name: 'Family Table', url: '', timelapse: '/connor/timelapses/deprecated/Family_Table.mp4', active: false },
+        { image: '/connor/templates/deprecated/neuro.png', name: 'Neuro', url: '', timelapse: '/connor/timelapses/deprecated/neuro_arts.mp4', active: false },
+        { image: '/connor/templates/deprecated/anny.png', name: 'anny', url: '', timelapse: '', active: false }
       ],
       displayDeprecatedCount: 5
     }
@@ -215,5 +220,9 @@ export default {
   display: flex;
   flex-direction: column;
   gap: 1em;
+}
+
+.card-section-btn {
+  max-height: 3em;
 }
 </style>

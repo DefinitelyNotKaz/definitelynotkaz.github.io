@@ -5,7 +5,7 @@
       <div id="content">
         <h5 id="name" class="mt-0">{{ title }}</h5>
         <div id="urls">
-          <b-button size="sm" variant="info" :href="details">
+          <b-button size="sm" variant="info" :href="url">
             Open
           </b-button>
         </div>
@@ -18,15 +18,15 @@
 
 
 export default {
-  name: "Ally-Media",
+  name: "Unaffiliated-Templates",
   props: {
     title: {
       type: String,
       require: true
     },
-    details: {
-      type: Array,
-      require: false
+    url: {
+      type: String,
+      require: true,
     },
     image: {
       props: String,
